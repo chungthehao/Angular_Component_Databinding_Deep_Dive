@@ -1,3 +1,8 @@
 p {
     color: blue;
 }
+
+/* label o cockpit component bi anh huong CSS, vi CSS nay ko dc encapsulate (minh dang chon none) */
+label {
+    color: green;
+}
