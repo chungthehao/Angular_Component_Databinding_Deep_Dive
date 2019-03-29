@@ -25,5 +25,14 @@ export class AppComponent {
       content: blueprintData.serverContent
     });
   }
+
+  // Thay đổi ele đầu tiên của mảng serverElements (index 0)
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed!';
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
+  }
   
 }
