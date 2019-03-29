@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -9,8 +9,9 @@ export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
 
-  // newServerName = ''; // Chuyen qua dung local references cai nay
-  newServerContent = '';
+  // newServerName = ''; // Chuyen qua dung local references cai nay roi (cach 1)
+  // newServerContent = ''; // Chuyen qua dung local references cai nay roi (cach 2 @ViewChild('abc'))
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   constructor() { }
 
@@ -18,22 +19,25 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddServer(nameInput: HTMLInputElement) {
-    console.log(nameInput.value)
+    // console.log(nameInput.value)
+    // console.log(this.serverContentInput.nativeElement.value)
 
     this.serverCreated.emit({
       serverName: nameInput.value,
       // serverName: this.newServerName,
 
-      serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
+    // this.serverContentInput.nativeElement.value = 'gi do' // Không nên access DOM bằng cách này!
+
     this.blueprintCreated.emit({
       serverName: nameInput.value,
       // serverName: this.newServerName,
 
-      serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 
