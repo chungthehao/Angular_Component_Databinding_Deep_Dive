@@ -6,7 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent implements OnInit {
-  @Input() element: {type: string, name: string, content: string};
+  // Dung Input decorator de bind data tu parent xuong component nay duoc.
+  @Input('srvElement') element: {type: string, name: string, content: string};
 
   constructor() { }
 
